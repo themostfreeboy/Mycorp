@@ -1,0 +1,36 @@
+<?php
+	function jxldecode($in)
+	{
+		$private_key = '-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEA25FvCCCUFqxfDOktl9a8xL3/u1exmFz/KVJ3IjjO3ygj9OBF
+uUvYSsDOrUECEFOoLajoTjSkBx0gw477MtDpt6sTY1G1NHUe6nXEjTQ9QK5lmyZW
+8cbq2Cz5pcoVdoK8od9xtqzm0rvYvQsSaN/MkdSjHNAR7dycKNupDpv6UI82RqCR
+1LqiYxPJ4+tz6lCxMRyA3vvPi/HStfw9La5cqanjZ9CuL5RD3ObnAC8IKrwQRCqp
+GrAS+6NG89Cxs2pZz0cQWwfA/TjveLU4DK5/BUHn/Sp13dBXtX6rua/hnllrvjj+
+12pYIAUk0Oafamd9+kKt8z5HuQ5Yu+b3yqXnfQIDAQABAoIBAQC9rh3lP3+vNqnG
+VYp1qaTZsenCxjc+ENi9segJQFo2nk6xtS2GrebkbTweoBJQWHTpPQmyxfcNzjQH
+vPV1KNU/PiM5odSQxL04fxSVh5OC1SYhqjViGR24MuJYPwPbpYWfsZBi52tgkbbj
+WTVGNFBdivx+X6Gdgv/ErD6XyFeuTu9MdfGzjjtppav5PIl1mPKGnxQa3EQOvSy8
+KD/ZetUdJMs5RNOqVutwSlz3JYvSrBCx8i9lFQgwmFlQOa79oN0q5PkkAB3r769e
+7ZkBr7769bYdoDnBqMQZT1KSKbAF3jNYw6SeS5KB8+Ay1jo/RPq7LQhq4AjSWxjt
+lyeye5xhAoGBAP4uJonBNEODjG+R8kQmSdYh0MllfYf00u3W9jdz2A9Ozdk9lT8L
+xXiwtJKzCMh7QLC8xg0C5ufPu/xO8BV6W93MZnXpCSAmPCaUwPvSae6hCWxW7jeG
+++d+3Lt6GIrYc3B7DEG2RocQ6Ovt79AZ2ntGUk0ff9a4xQlylcrdmhynAoGBAN0j
+2P7PHv3IssWUYrqNyrLWNOpA4UqdhI/kwKjcVaOqQHSrJ4QyVn2VgfWqI+JSFRhr
+tQ23ndhYSTRlDcIixju2wjMFUt4itZ3QZdtJKvyAfLOO+7Z2gaW0ZHZM/gaUDy15
+1meIvXEjVqs8pTcuHfwnn3pdtSoN1W5bOPzYDOs7AoGACM3Ua+UTSFtgG+U0PQQO
+fqpBLxii1ni2baKKeLU8gJs8KhAmAT8JIfsM5h/pZ/hM71I6kezNzq21VzHswvGw
+COixi9f8hu6MGtIANTi+jpNpXiVMrwOv6f7M6nl6LCT/KqA4dnY3zynYx4NAUTb0
+CF0RMLasmOVhfchIQ/SVB/UCgYA9GDxJGXvcbWhGgdpM5AOOKPPxi/8yGBaZkn9P
+p5/ZWZ35HZgLQ8T1aSrAbkL/seG2H3uj0IjBTpLa8Ng+PFE8Ch/Y7K2aRUib0wlw
+7eP8YpsRGH2eSVtEJnRi4p6Dvr/6tmBvti1wZmz5XgXfGtSZ53B95Am7FptSo804
+vY/EJQKBgHTi52Ug9XfSg5wloSvBraVlCdybnyclX7g5n1HUHr42PV8UArLDNo5f
+vXbhlSHxKJ9Qak71Sp2YGhPq0oDkRDUjfllrjXL/BPOiOtUDBR1WdLoUXZ7JY0PL
+zm0arlecL6F4K+Q7wQm60RaZLIemklErq8LexsKE39E3amasXf47
+-----END RSA PRIVATE KEY-----';
+		$pi_key =  openssl_pkey_get_private($private_key);//这个函数可用来判断私钥是否是可用的，可用返回资源id Resource id
+		$in = base64_decode($in);
+		openssl_private_decrypt($in,$out,$pi_key);//私钥解密
+		return $out;
+	}
+?>
